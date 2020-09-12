@@ -24,6 +24,6 @@ store.dispatch(init())
     document.getElementById('root')
   ) 
 // }, 1000);
-console.error("something")
-console.error(store.getState())
+// console.error("something")
+// console.error(store.getState())
 

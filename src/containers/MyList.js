@@ -9,11 +9,13 @@ import PropTypes from 'prop-types'
 const MylistContainer = ({ items, removeMylist }) => (
     <ItemsList title="My List">
       {
-        items.map(item =>
+    items.map(item =>
         <Item
           key={item.id}
-          item={item}
-          onRmClicked={() => removeMylist(item.id)} />
+          title={item.title}
+          isMine = {true}
+          link = {item.img}
+          onClick = {() => removeMylist(item.id)} />
       )}
     </ItemsList>
   )

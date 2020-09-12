@@ -1,10 +1,11 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import './itemsList.css'
 
 const ItemsList = ({ title, children }) => (
   <div>
     <h3>{title}</h3>
-    <div>{children}</div>
+    <div className="flex-container">{children}</div>
   </div>
 )
 

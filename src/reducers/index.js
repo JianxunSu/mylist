@@ -6,19 +6,25 @@ const rootReducer = (state = {mylist:[], recommendations:[]}, action) => {
     switch (action.type) {
         case types.ADD_MYLIST:
             // change from recommendations to mylist
-            let item = state.recommendations.filter(item => item.id === action.id)
+            let recItem = state.recommendations.filter(item => item.id === action.id)
+
+            // console.error('Debug')
             return {
                 ...state,
-                mylist: [...state.mylist, item],
-                    recommendations: state.recommendations.filter(item => item.id !== action.id)
+                // mylist: [...state.mylist, state.recommendations.filter(item => item.id === action.id)],
+                mylist: state.mylist.concat( recItem),
+                recommendations: state.recommendations.filter(item => item.id !== action.id)
             }
 
         case types.RM_MYLIST:
-            item = state.mylist.filter(item => item.id === action.id)
+            let myItem = state.mylist.filter(item => item.id === action.id)
+
+            
             return {
                 ...state,
                 mylist: state.mylist.filter(item => item.id !== action.id),
-                    recommendations: [...state.recommendations, item]
+                // recommendations: [...state.recommendations, state.mylist.filter(item => item.id === action.id)]
+                recommendations: state.recommendations.concat( myItem)
             }
 
         case types.UPDATE_ITEMS:
@@ -32,26 +38,12 @@ const rootReducer = (state = {mylist:[], recommendations:[]}, action) => {
 }
 
 export const getMylist = (state) => {
-    // return [{
-    //     "title": "Futurama",
-    //     "id": 1,
-    //     "img": "http://cdn1.nflximg.net/webp/7621/3787621.webp"
-    // }, {
-    //     "title": "The Interview",
-    //     "id": 2,
-    //     "img": "http://cdn1.nflximg.net/webp/1381/11971381.webp"
-    // }, {
-    //     "title": "Gilmore Girls",
-    //     "id": 3,
-    //     "img": "http://cdn1.nflximg.net/webp/7451/11317451.webp"
-    // }]
-    // return (typeof state.mylist !== undefined)? state.mylist : []
     return state.mylist
 }
 
 export const getRecommends = (state) => {
-    console.error('REC')
-    console.error(state)
+    // console.error('REC')
+    // console.error(state)
 
     return state.recommendations
 

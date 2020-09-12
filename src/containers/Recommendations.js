@@ -12,8 +12,10 @@ const RecommendsContainer = ({ items, addMylist }) => (
       {items.map(item =>
         <Item
           key={item.id}
-          item={item}
-          onRmClicked={() => addMylist(item.id)} />
+          title={item.title}
+          isMine = {false}
+          link = {item.img}
+          onClick = {() => addMylist(item.id)} />
       )}
     </ItemsList>
 
