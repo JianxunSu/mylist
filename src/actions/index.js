@@ -1,4 +1,4 @@
-import * as types from '../constants/actionTypes'
+import * as types from '../constants/ActionTypes'
 import api from '../api/api'
 
 const updateItems = items => ({

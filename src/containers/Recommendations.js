@@ -1,38 +1,39 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { removeMylist } from '../actions'
+import { addMylist } from '../actions'
 import ItemsList from '../components/ItemsList'
 import Item from '../components/Item'
-import {getMylist} from '../reducers'
+import {getRecommends} from '../reducers'
 import PropTypes from 'prop-types'
 
-const MylistContainer = ({ items, removeMylist }) => (
-    <ItemsList title="My List">
-      {
-        items.map(item =>
+
+const RecommendsContainer = ({ items, addMylist }) => (
+    <ItemsList title="Recommendations">
+      {items.map(item =>
         <Item
           key={item.id}
           item={item}
-          onRmClicked={() => removeMylist(item.id)} />
+          onRmClicked={() => addMylist(item.id)} />
       )}
     </ItemsList>
+
   )
   
-  MylistContainer.propTypes = {
+  RecommendsContainer.propTypes = {
     items: PropTypes.arrayOf(PropTypes.shape({
       id: PropTypes.number.isRequired,
       title: PropTypes.string.isRequired,
       img: PropTypes.string.isRequired
     })).isRequired,
-    removeMylist: PropTypes.func.isRequired
+    addMylist: PropTypes.func.isRequired
   }
   
   const mapStateToProps = state => ({
-    items: getMylist(state)
+    items: getRecommends(state)
   })
   
   export default connect(
     mapStateToProps,
-    { removeMylist }
-  )(MylistContainer)
+    { addMylist }
+  )(RecommendsContainer)
   

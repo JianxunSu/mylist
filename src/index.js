@@ -1,18 +1,29 @@
 import React from 'react'
 import { render } from 'react-dom'
-import { Provider } from '../../../../Library/Caches/typescript/2.9/node_modules/@types/react-redux'
-import { createStore } from '../../../../Library/Caches/typescript/2.9/node_modules/redux'
+import { Provider } from 'react-redux'
+import { createStore, applyMiddleware } from 'redux'
 import {init} from './actions'
-import rootReducer from './containers/App'
+import rootReducer from './reducers'
 import App from './containers/App'
+import thunk from 'redux-thunk'
+import data from './api/items.json'
 
-const store = createStore(rootReducer)
+const middleware = [ thunk ];
+const store = createStore(
+  rootReducer, 
+  // data
+  applyMiddleware(...middleware)
+)
 
 store.dispatch(init())
+// setTimeout(() => {
+  render(
+    <Provider store={store}>
+      <App />
+    </Provider>,
+    document.getElementById('root')
+  ) 
+// }, 1000);
+console.error("something")
+console.error(store.getState())
 
-render(
-  <Provider store={store}>
-    <App />
-  </Provider>,
-  document.getElementById('root')
-)
