@@ -2,7 +2,7 @@ import * as types from '../constants/ActionTypes'
 
 //Just one root state for simplication, could be divided to mylist and recommendation for 2 parts of state
 const rootReducer = (state = {mylist:[], recommendations:[]}, action) => {
-    console.error('Reducer begin')
+
     switch (action.type) {
         case types.ADD_MYLIST:
             // change from recommendations to mylist
@@ -42,11 +42,7 @@ export const getMylist = (state) => {
 }
 
 export const getRecommends = (state) => {
-    // console.error('REC')
-    // console.error(state)
-
     return state.recommendations
-
 }
 
 export default rootReducer
